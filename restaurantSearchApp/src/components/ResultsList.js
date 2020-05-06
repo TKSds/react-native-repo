@@ -29,7 +29,7 @@ const ResultsList = ({ title, restaurants, navigation }) => {
                 navigation.navigate("ResultsShow", { id: item.id })
               }
             >
-              <ResultsDetail result={item} />
+              <ResultsDetail style={styles.resultStyle} result={item} />
             </TouchableOpacity>
           );
         }}
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 15,
     marginBottom: 5,
+    color: "white",
   },
   containerStyle: {
     marginBottom: 10,

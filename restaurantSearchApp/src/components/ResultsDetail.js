@@ -6,7 +6,7 @@ const ResultsDetail = ({ result }) => {
     <View style={styles.containerStyle}>
       <Image source={{ uri: result.image_url }} style={styles.imageStyle} />
       <Text style={styles.nameStyle}>{result.name}</Text>
-      <Text>
+      <Text style={styles.detailsStyle}>
         {result.rating} Stars, {result.review_count} Reviews
       </Text>
     </View>
@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
   },
   nameStyle: {
     fontWeight: "bold",
+    color: "white",
+  },
+  detailsStyle: {
+    color: "white",
   },
 });
 
