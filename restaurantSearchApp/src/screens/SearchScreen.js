@@ -6,7 +6,7 @@ import ResultsList from "../components/ResultsList";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
-  const [searchApi, restaurants, errorMessage] = useResults();
+  const [searchApi, restaurants, errorMessage, location] = useResults();
 
   const filterResultsByPrice = (price) => {
     // price === '€' || '€€' || '€€€'
@@ -30,6 +30,9 @@ const SearchScreen = () => {
           onTermSubmit={() => searchApi(term)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
+        <Text style={styles.textStyle}>
+          Searching for restaurants in: {location}
+        </Text>
         <ScrollView>
           <ResultsList
             title="Cost Effective"
@@ -53,6 +56,13 @@ const styles = StyleSheet.create({
   imageBackground: {
     flex: 1,
     resizeMode: "cover",
+  },
+  textStyle: {
+    fontWeight: "bold",
+    marginLeft: 15,
+    marginBottom: 5,
+    color: "white",
+    fontSize: 16,
   },
 });
 

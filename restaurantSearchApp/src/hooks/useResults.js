@@ -5,12 +5,14 @@ export default () => {
   const [restaurants, setRestaurants] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const location = "Paris";
+
   const searchApi = async (searchTerm) => {
     try {
       const response = await yelp.get("/search", {
         params: {
           limit: 50,
-          location: "Paris",
+          location: location,
           term: searchTerm,
         },
       });
@@ -24,5 +26,5 @@ export default () => {
     searchApi("pizza");
   }, []);
 
-  return [searchApi, restaurants, errorMessage];
+  return [searchApi, restaurants, errorMessage, location];
 };
