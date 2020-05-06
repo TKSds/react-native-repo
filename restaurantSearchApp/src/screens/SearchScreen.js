@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, ScrollView, ImageBackground } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
+  Picker,
+  View,
+} from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
@@ -7,6 +14,7 @@ import ResultsList from "../components/ResultsList";
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, restaurants, errorMessage, location] = useResults();
+  const [searchLocation, setSearchLocation] = useState("Paris");
 
   const filterResultsByPrice = (price) => {
     // price === '€' || '€€' || '€€€'
@@ -27,12 +35,25 @@ const SearchScreen = () => {
         <SearchBar
           term={term}
           onTermChange={setTerm}
-          onTermSubmit={() => searchApi(term)}
+          onTermSubmit={() => searchApi(term, searchLocation)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
-        <Text style={styles.textStyle}>
-          Searching for restaurants in: {location}
-        </Text>
+        <View style={styles.viewStyle}>
+          <Text style={styles.textStyle}>Searching for restaurants in:</Text>
+          <Picker
+            selectedValue={searchLocation}
+            style={styles.pickerStyle}
+            itemStyle={styles.textStyle}
+            onValueChange={(itemValue) => setSearchLocation(itemValue)}
+          >
+            <Picker.Item label="Paris" value="Paris" />
+            <Picker.Item label="Madrid" value="Madrid" />
+            <Picker.Item label="New York" value="New York" />
+            <Picker.Item label="Viena" value="Viena" />
+            <Picker.Item label="Amsterdam" value="Amsterdam" />
+          </Picker>
+        </View>
+
         <ScrollView>
           <ResultsList
             title="Cost Effective"
@@ -62,7 +83,20 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginBottom: 5,
     color: "white",
-    fontSize: 16,
+    fontSize: 18,
+  },
+  pickerStyle: {
+    height: 100,
+    width: 200,
+    color: "white",
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  viewStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 5,
+    height: 60,
   },
 });
 

@@ -6,7 +6,6 @@ import {
   Image,
   FlatList,
   ImageBackground,
-  ScrollView,
 } from "react-native";
 import yelp from "../api/yelp";
 

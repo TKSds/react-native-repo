@@ -7,12 +7,12 @@ export default () => {
 
   const location = "Paris";
 
-  const searchApi = async (searchTerm) => {
+  const searchApi = async (searchTerm, searchLocation) => {
     try {
       const response = await yelp.get("/search", {
         params: {
           limit: 50,
-          location: location,
+          location: searchLocation,
           term: searchTerm,
         },
       });
@@ -23,7 +23,7 @@ export default () => {
   };
 
   useEffect(() => {
-    searchApi("pizza");
+    searchApi("pizza", "Paris");
   }, []);
 
   return [searchApi, restaurants, errorMessage, location];
