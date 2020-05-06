@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   imageBackground: {
     flex: 1,
     resizeMode: "cover",
+    opacity: 0.9,
   },
   textStyle: {
     fontWeight: "bold",
